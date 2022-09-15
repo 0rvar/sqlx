@@ -1,4 +1,4 @@
-use crate::any::{Any, AnyArguments, AnyColumn, AnyColumnIndex, AnyTypeInfo};
+use crate::any::{Any, AnyArguments, AnyColumn, AnyTypeInfo};
 use crate::column::ColumnIndex;
 use crate::error::Error;
 use crate::ext::ustr::UStr;
@@ -46,10 +46,7 @@ impl<'q> Statement<'q> for AnyStatement<'q> {
     impl_statement_query!(AnyArguments<'_>);
 }
 
-impl<'i> ColumnIndex<AnyStatement<'_>> for &'i str
-where
-    &'i str: AnyColumnIndex,
-{
+impl<'i> ColumnIndex<AnyStatement<'_>> for &'i str {
     fn index(&self, statement: &AnyStatement<'_>) -> Result<usize, Error> {
         statement
             .column_names
